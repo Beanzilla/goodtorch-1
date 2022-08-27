@@ -49,7 +49,7 @@ function get_light_node(player)
 				z = ppos.z + (math.sin(d.z)*(i-1))
 			}
 			local lfactor = math.floor(0.14*(100-i))
-	
+
 			-- minetest.set_node(vector.round(p), {name = "default:steelblock"})
 			return {l = "goodtorch:light_"..lfactor,
 				pos = vector.round(p)}
@@ -73,7 +73,7 @@ local function update_illumination(player)
 	local pos = get_light_node(player).pos
 	local old_pos = player_lights[name].pos
 	local node = get_light_node(player).l
-	
+
 	-- minetest.set_node(vector.round(pos), {name = "default:steelblock"})
 	-- Check if illumination needs updating
 	if old_pos and pos then
@@ -154,6 +154,7 @@ end
 minetest.register_craftitem("goodtorch:flashlight_off", {
 	description = "Flashlight (off)",
 	inventory_image = "goodtorch_flashlight_off.png",
+	on_place = flashlight_toggle,
 	on_use = flashlight_toggle,
 	on_secondary_use = flashlight_toggle,
 	groups = {
@@ -164,6 +165,7 @@ minetest.register_craftitem("goodtorch:flashlight_off", {
 minetest.register_craftitem("goodtorch:flashlight_on", {
 	description = "Flashlight (on)",
 	inventory_image = "goodtorch_flashlight_on.png",
+	on_place = flashlight_toggle,
 	on_use = flashlight_toggle,
 	on_secondary_use = flashlight_toggle,
 	groups = {
